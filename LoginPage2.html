@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://media.glassdoor.com/l/6a/d1/51/c7/wellsfargo.jpg'); /* Background image URL */
+            background-size: 100% 100%;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 60px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            position: relative;
+            max-width: 300px;
+            width: 60%;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .voice-input {
+            margin-top: 10px;
+        }
+        .voice-input input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+        }
+        .voice-input button {
+            width: calc(50% - 20px);
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .voice-input button:hover {
+            background-color: #0056b3;
+        }
+        .signup-link {
+            margin-top: 10px;
+            color: #333;
+        }
+        .signup-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Login with Voice Recognition</h1>
+        <div class="voice-input">
+            <input type="text" id="voiceInput" placeholder="Speak" readonly>
+            <button type="button" onclick="startVoiceRecognition()">Speak</button>
+        </div>
+        <p class="signup-link">Don't have an account? <a href="#">Sign up</a></p>
+    </div>
+
+    <script>
+        function startVoiceRecognition() {
+            const recognition = new webkitSpeechRecognition();
+            recognition.lang = 'en-US';
+            recognition.start();
+
+            recognition.onresult = function(event) {
+                document.getElementById('voiceInput').value = event.results[0][0].transcript;
+            }
+        }
+    </script>
+</body>
+</html>
